@@ -37,3 +37,8 @@ function _cdto_complete() {
 }
 
 complete -F _cdto_complete cdto
+
+function serve_http
+{
+      python -c "import SimpleHTTPServer,BaseHTTPServer; BaseHTTPServer.HTTPServer((\"\", $1), SimpleHTTPServer.SimpleHTTPRequestHandler).serve_forever()"
+}
