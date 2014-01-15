@@ -1,0 +1,23 @@
+#!/bin/bash
+SCRIPT_ROOT=`dirname "$0"`
+SCRIPT_ROOT=`( cd "$SCRIPT_ROOT" && pwd )`
+
+echo -n "Enter the directory to store the init files [$SCRIPT_ROOT]: "
+read DIRECTORY
+
+[ ! -z "$DIRECTORY" ] && [[ $DIRECTORY != /* ]] && echo "Absolute path needed" && exit
+[ -z "$DIRECTORY" ] && DIRECTORY=${SCRIPT_ROOT}
+[[ ! -d "${DIRECTORY}" ]] && mkdir -p $DIRECTORY
+[[ $? != 0 ]] && echo "Couldn't create directory" && exit
+
+cp -v ${SCRIPT_ROOT}/aliases   \
+      ${SCRIPT_ROOT}/bashrc    \
+      ${SCRIPT_ROOT}/exports   \
+      ${SCRIPT_ROOT}/functions \
+      ${SCRIPT_ROOT}/screenrc  \
+      ${SCRIPT_ROOT}/tmux.conf \
+      ${SCRIPT_ROOT}/vimrc "${DIRECTORY}"
+
+echo "source ${DIRECTORY}/bashrc" >> ~/.bashrc
+
+echo "Completed setup. Check ~/.bashrc for any conflicting definitions."

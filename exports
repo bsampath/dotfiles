@@ -9,7 +9,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 #####################
 export PATH=""
 source /etc/profile
-export PATH="$JAVA_HOME/bin:$PATH
+export PATH="$JAVA_HOME/bin:$PATH"
 
 # Pimp PS1
 ##########
