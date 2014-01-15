@@ -1,0 +1,16 @@
+# Java Related
+##############
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Others
+########
+
+# Keep PATH beautiful
+#####################
+export PATH=""
+source /etc/profile
+export PATH="$JAVA_HOME/bin:$PATH
+
+# Pimp PS1
+##########
+PS1="\n[\$(date '+%H:%M:%S')] \[\e[31;1m\]\u@\h \[\e[36;1m\]\w \[\e[32;1m\]\j \[\e[0m\] \n$ "

@@ -1,3 +1,0 @@
-alias ll='ls -lrtGA'
-alias ls='ls -G'
-alias l='ls -GA'

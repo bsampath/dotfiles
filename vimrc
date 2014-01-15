@@ -114,6 +114,7 @@ endfunction
 map <F12>b :call StubBeautify()<CR>
 autocmd BufNewFile,BufRead *.cpp,*.h map <F12>b :call BeautifyCpp()<CR>
 autocmd BufNewFile,BufRead *.pl,*.pm,*.cgi map <F12>b :call BeautifyPerl()<CR>
+autocmd BufNewFile,BufRead *.go map <F12>b :call Fmt<CR>
 
 highlight       Member       gui=bold
 syn match       Member       display "\<\h\w*\>\s*("me=e-1
@@ -126,3 +127,12 @@ map OF $
 
 "map [H ^
 "map [F $
+
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+

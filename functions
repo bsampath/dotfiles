@@ -1,0 +1,39 @@
+function set_symlinks() {
+   [ -h ~/.vimrc ] && rm ~/.vimrc
+   ln -s ~/$RCDIR/vimrc ~/.vimrc 2>/dev/null
+   [ -h ~/.tmux.conf ] && rm ~/.tmux.conf
+   ln -s ~/$RCDIR/tmux.conf ~/.tmux.conf 2>/dev/null
+}
+
+function cleanup_downloads() {
+   cd ~/Downloads/ 
+   mv *.xlsx *.xls *.docx *.doc *.pdf *.ppt *.pptx *.txt documents/ 2>/dev/null
+   mv *.zip *.tgz *.tar.gz archives/ 2>/dev/null
+   mv *.gif *.jpg *.png *.GIF *.JPG *.PNG images 2> /dev/null
+   mv *.sh *.xml *.jar *.java code 2> /dev/null
+   mv *.pkg *.dmg apps 2> /dev/null
+   cd -
+}
+
+function cdto() {
+   ancestor=$1
+   basepath=`pwd|awk -F"$ancestor" '{print $1}'`
+   cd "$basepath$ancestor"
+}
+
+function _cdto_complete() {
+    local cmd="${1##*/}"
+    local word=${COMP_WORDS[COMP_CWORD]}
+    local line=${COMP_LINE}
+    local ancestors="`pwd | sed 's/\///'|tr "/" "\n"`"
+    local use=""
+    if [ "$word" == "" ]; then
+        use="$ancestors"
+    else
+        use="`echo $ancestors | grep $word`"
+    fi
+
+    COMPREPLY=($(compgen -W "$use"  -- "${word}"))
+}
+
+complete -F _cdto_complete cdto

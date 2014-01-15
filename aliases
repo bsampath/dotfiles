@@ -1,0 +1,20 @@
+# Command aliases
+#################
+alias vi='vim'
+alias ls='ls -G'
+alias ll='ls -alhrt'
+alias mvn.debug='mvn -Dmaven.surefire.debug'
+
+# Directory aliases
+###################
+
+# SSH aliases
+#############
+
+# Edit rc files
+###############
+alias .aliases='vi ~/${RCDIR}/aliases;source ~/${RCDIR}/aliases'
+alias .bashrc='vi ~/${RCDIR}/bashrc;source ~/${RCDIR}/bashrc'
+alias .vimrc='vi ~/${RCDIR}/vimrc'
+alias .exports='vi ~/${RCDIR}/exports; source ~/${RCDIR}/exports'
+alias .functions='vi ~/${RCDIR}/functions; source ~/${RCDIR}/functions'
