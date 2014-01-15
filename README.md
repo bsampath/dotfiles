@@ -1,6 +1,3 @@
-rcfiles
-=======
-
 Steps:
 ------
     #> cd $HOME
